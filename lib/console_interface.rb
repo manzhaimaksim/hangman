@@ -6,18 +6,15 @@ class ConsoleInterface
   end
 
   def print_out
-    puts <<~END
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
-      У вас осталось ошибок: #{@game.errors_allowed}
-
-    END
+    puts "Слово: #{word_to_show}".colorize(:blue)
+    puts "#{figure.colorize(:green)}"
+    puts "Ошибки (#{@game.errors_made}): #{errors_to_show}".colorize(:red)
+    puts "У вас осталось ошибок: #{@game.errors_allowed}".colorize(:red)
 
     if @game.won?
-      puts 'Поздравляем, вы выиграли!'
+      puts 'Поздравляем, вы выиграли!'.colorize(:light_red)
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово: #{@game.word}"
+      puts "Вы проиграли, загаданное слово: #{@game.word}".colorize(:magenta)
     end
   end
 
@@ -43,7 +40,7 @@ class ConsoleInterface
   end
 
   def input
-    print 'Введите следующую букву: '
+    print 'Введите следующую букву: '.colorize(:light_cyan)
     gets[0].upcase
   end
 end
